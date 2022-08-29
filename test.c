@@ -1,257 +1,204 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+double Pow(int n, int k)
+{
+	//n的k 次方
+	//n*k=n* n*(k-1)
+	if (k < 0)
+		return(1.0 / (Pow(n, -k)));
+	else if (k == 0)
+
+		return 1;
+
+	else
+		return n*Pow(n, k - 1);
+}
 int main()
 {
-	int a = 10;
-	int b = 20;
-	int c = a + b;
+	int n = 0;
+	int k = 0;
+	scanf_s("%d%d", &n, &k);
+	double ret = Pow(n, k);
+	
+	printf("ret = %lf\n", ret);
 	return 0;
 }
-//int main()
-//{ 
-//	char a = 3;
-//	//00000000 00000000 00000000 00000011
-//	//00000011  --a;
-//	
-//	char b = 127;
-//	//00000000 00000000 00000000 01111111
-//	//01111111
-//	char c = a + b;
-//	// a 和 b如何相加
-//	//00000000 00000000 00000000 00000011
-//	//00000000 00000000 00000000 01111111
-//	//00000000 00000000 00000001 00000010
-//	//100000010--c
-//	//11111111 11111111 11111111 10000010  ---补码
-//	//11111111 11111111 11111111 10000001  ---反码
-//	//10000000 00000000 00000000 01111110  ---原码
-//	printf("%d\n", c);
-//	return 0;
-//}
-//学生
-//
-//struct Stu
+////输入：1729， 输出：19
+////
+//int DigitSum(unsigned int num)
 //{
-//	char name[20];
-//	int age;
-//	char id[20];
-//};
-//int main()
-//{
-//	int a = 0;
-//	//使用struct Stu这个类型创建了一个学生s1，并初始化
-//	struct Stu s1 = {"王闯", 22, "2019235687"};
-//	struct Stu* ps = &s1;
-//	printf("%s\n", ps->name);
-//	//printf("%s\n", (*ps).name);
-//	/*printf("%s\n", s1.age);
-//	printf("%s\n", s1.name);
-//	printf("%s\n", s1.id);*/
-//	//结构体变量‘.’成员名
-//	return 0;
-//}
-//int get_max(int x, int y)
-//{
-//	return x > y ? x : y;
-//}
-//int main()
-//{
-//	int a = 0;
-//	int b = 0;
-//	int max = get_max(a, b);
-//	printf("max = %d\n", max);
-//	return 0;
-//}
-//int main()
-//{
-//	int a = 0;
-//	int b = 0;
-//	int max = 0;
-//	if (a > b)
+//	if (num > 9)
 //	{
-//		max = a;
+//		return DigitSum(num / 10) + num % 10;
 //	}
-//	else
+//	else 
 //	{
-//		max = b;
+//		return num;
 //	}
-//	max = (a > b ? a : b);
-//	/*if (a > 5)
-//	{
-//		b = 3;
-//	}
-//	else
-//	{
-//		b = -3;
-//	}
-//	b = (a > 5 ? 3 : -3);*/
-//	return 0;
 //}
 //int main()
 //{
-//	int a = 3;
-//	int b = 5;
-//	int c = a && b;
-//	printf("%d\n", c);
-//	return 0;
-//}
-//int main()
-//{
-//	int a = 11;
-//	a = a | (1 << 2);
-//	printf("%d\n", a);
-//	a = a & (~(1 << 2));
-//	printf("%d\n", a);
-//}
-//int main()
-//{
-//	short s = 0;
-//	int a = 0;
-//	printf("%d\n", sizeof(s = a + 5));
-//	printf("%d\n", s);
-//	return 0;
-//}
-//int main() 
-//{
-//	int a = 0;
-//	char c = 'r';
-//	char* p = &c;
-//	int arr[10] = { 0 };
-//	//sizeof 计算的变量所占内存空间的大小，单位是字节
-//	printf("%d\n", sizeof(a));//4
-//	printf("%d\n", sizeof(c));//1
-//	printf("%d\n", sizeof(p));//8
-//	printf("%d\n", sizeof(arr));//40
-//	return 0;
-//}
-//int main()
-//{
-//	int a = 10;
-//	int* p = &a;//取地址操作符
-//	*p = 20;//解引用操作符
-//
-//	return 0;
-//}
-//int main()
-//{
-//	/*int a = 10;
-//	a = a + 2;
-//	a += 2;
-//	a = a >> 1;*/
-//	int a = 0;
-//	if (!a)
-//	{
-//		printf("hehe\n");
-//	}
-//	return 0;
-//}
-//int main()
-//{
-//	int num = 0;
-//	int count = 0;
+//	unsigned int num = 0;
 //	scanf("%d", &num);
-//	int i = 0;
-//	for (i = 0; i < 32; i++)
+//	int ret = DigitSum(num);
+//	printf("ret = %d \n", ret);
+//	return 0;
+//}
+//int my_strlen(char* str)
+//{
+//	int count = 0;
+//	while (*str !='\0')
 //	{
-//		if (1 == ((num >> i) & 1))
-//			count++;
+//		count++;
+//		str++;
 //	}
-//	//32bit
-//	// // num&1 == 1
-//	//统计num 的补码中有几个1
-//	/*while (num)
+//	return count;
+//}
+//void reverse_string(char arr[])
+//{
+//	int left = 0;
+//	int right = my_strlen(arr) - 1;
+//	while (left < right)
 //	{
-//		if (num % 2 == 1)
+//		int tmp = arr[left];
+//		arr[left] = arr[right];
+//		arr[right] = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//void reverse_string(char* arr[])
+//{
+//	char tmp = arr[0];
+//	int len = my_strlen(arr);
+//	arr[0] = arr[len - 1];
+//	arr[len - 1] = '\0';
+//	if(my_strlen(arr+1) >= 2)
+//	reverse_string(arr + 1);
+//	arr[len - 1] = tmp;
+//}
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	reverse_string(arr);
+//	printf("%s", arr);
+//	return 0;
+//}
+//int print(int* p, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i<sz; i++)
+//	{
+//		printf("%d", *(p + i));
+//	}
+//}
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9, };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	print(arr, sz);
+//	return 0;
+//}
+//void print(int m)
+//{
+//	int i = 0;
+//	printf("奇数位：");
+//	for (i = 30; i >=0; i-=2)
+//	{
+//		printf("%d", (m >> i) & 1);
+//	}
+//	printf("\n");
+//	printf("偶数位：");
+//	for (i = 31; i >= 1; i -= 2)
+//	{
+//		printf("%d", (m >> i) & 1);
+//	}
+//	printf("\n");
+//
+//}
+//
+//int main()
+//{
+//
+//	int m = 0;
+//	scanf_s("%d", &m);
+//	print(m);
+//	return 0;
+//}
+//int get_diff_bit(int m, int n)
+//{
+//	int tmp = m ^ n;
+//	int count = 0;
+//	//return count_bit_one(tmp);
+//	while (tmp)
+//	{
+//		tmp = tmp & (tmp - 1);
+//		count++;
+//	}
+//}
+//int main()
+//{
+//	int m = 0;
+//	int n = 0;
+//	scanf_s("%d %d", &m, &n);
+//	int count = get_diff_bit(m, n);
+//	printf("count = %d\n", count);
+//	return 0;
+//}
+//int count_bit_one(int n)
+//{
+//	int count = 0;
+//	while (n)
+//	{
+//		n = n & (n - 1);
+//		count++;
+//	}
+//	return count;
+//}
+//int main()
+//{
+//	int a = 0;
+//	scanf_s("%d", &a);
+//	int count = count_bit_one(a);
+//	
+//	printf("count = %d\n", count);
+//	return 0;
+//}
+////统计二进制中1的个数
+//
+//int count_bit_one(int n)
+//{
+//	int count = 0;
+//	int i = 0;
+//	for (i=0; i<32; i++)
+//	{
+//		if (((n >> i) & 1) == 1)
+//		{
 //			count++;
-//		num = num / 2;
+//
+//		}
+//	}
+//	/*while (n)
+//	{
+//		if (n % 2 == 1)
+//		{
+//			count++;
+//		}
+//		n = n / 2;
 //	}*/
-//
-//	printf("%d\n", count);
-//	return 0;
+//	return count;
 //}
 //int main()
 //{
-//	int a = 3;
-//	int b = 5;
-//	////加减法
-//	//a = a + b;
-//	//b = a - b;
-//	//a = a - b;
-//	//异或
-//	a = a ^ b;
-//	b = a ^ b;
-//	a = a ^ b;
-//	printf("a = %d, b = %d", a, b);
-//	return 0;
-//}
-//int main()
-//{
-	
-	////& -按2进制位与
-	//int a = 3;
-	//int b = 5;
-	//int c = a & b;
-	////00000000 00000000 00000000 00000011
-	////00000000 00000000 00000000 00000101
-	////00000000 00000000 00000000 00000001
-	//printf("%d\n", c);
-	//| -按二进制位或
-	/*int a = 3;
-	int b = 5;
-	int c = a | b;
-	printf("%d\n", c);*/
-	////00000000 00000000 00000000 00000011
-	////00000000 00000000 00000000 00000101
-	////00000000 00000000 00000000 00000111
-	
-
-	//按二进制位异或
-	//相同为0，相异为1
-//	int a = 3;
-//	int b = 5;
-//	int c = a ^ b;
-//	printf("%d\n", c);
-//	////00000000 00000000 00000000 00000011
-//	////00000000 00000000 00000000 00000101
-//	////00000000 00000000 00000000 00000110
-//
-//
-//	return 0;
-//}
-//int main()
-//{
-//	int a = 5;
-//	int b = a << 1;
-//	printf("%d\n", b);
-//	return 0;
-//}
-//int main()
-//{
-//	int a = -1;
-//	//整数的二进制表示有：原码、反码、补码
-//	//存储到内存的是补码
-//	//10000000 00000000 00000000 00000001-原码
-//	//11111111 11111111 11111111 11111110-反码
-//	//11111111 11111111 11111111 11111111-补码
-//	//
-//	int b = a >> 1;
-//	printf("%d\n", b);
-//	//1111
-//	//8421=15
-//	return 0;
-//}
-//int main()
-//{
-//	int a = 16;
-//	int b = a >> 1;
-//	printf("%d\n", b);
-//	return 0;
-//}
-//
-//int main()
-//{
-//	int a = 5 / 2;//商2余1
-//	printf("a = %d\n", a);
+//	int a = 0;
+//	scanf_s("%d", &a);
+//	//写一个函数求a的二进制（补码）表示中有几个1；
+//	int count = count_bit_one(a);
+//	//13
+//	//00000000 00000000 00000000 00001101
+//	printf("count = %d\n", count);
 //	return 0;
 //}
